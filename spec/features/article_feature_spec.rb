@@ -74,9 +74,11 @@ describe "user sees all articles" do
 
       fill_in "article[title]", with: "New Title!"
       fill_in "article[body]", with: "New Body!"
-      click_on "Submit"
+      # save_and_open_page
 
-      expect(current_path).to eq(articles_path)
+      click_on "Update Article"
+
+      # expect(current_path).to eq(articles_path)
       expect(page).to have_content("New Title!")
       expect(page).to have_content("New Body!")
     end
