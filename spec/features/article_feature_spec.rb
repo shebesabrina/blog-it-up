@@ -48,6 +48,7 @@ describe "user sees all articles" do
 
       expect(page).to have_content("New Title!")
       expect(page).to have_content("New Body!")
+      expect(page).to have_content("Article was created")
     end
   end
 
@@ -61,7 +62,8 @@ describe "user sees all articles" do
 
       expect(current_path).to eq(articles_path)
       expect(page).to have_content(article_2.title)
-      expect(page).to_not have_content(article_1.title)
+      expect(all(".article-title").count).to eq(1)
+      expect(page).to have_content("#{article_1.title} was destroyed.")
     end
   end
 
