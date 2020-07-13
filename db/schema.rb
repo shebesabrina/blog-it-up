@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_07_202237) do
+ActiveRecord::Schema.define(version: 2020_07_13_223805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,4 +20,12 @@ ActiveRecord::Schema.define(version: 2020_07_07_202237) do
     t.text "body"
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.string "author_name"
+    t.text "body"
+    t.bigint "article_id"
+    t.index ["article_id"], name: "index_comments_on_article_id"
+  end
+
+  add_foreign_key "comments", "articles"
 end
