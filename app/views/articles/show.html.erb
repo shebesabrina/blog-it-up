@@ -3,3 +3,6 @@
 <%= link_to "Delete", article_path(@article), method: :delete %><br />
 <%= link_to "Edit", edit_article_path(@article) %><br />
 <%= link_to "<< Back to Article List", articles_path %>
+
+<h3>Comments</h3>
+<%= render partial: 'articles/comment', collection: @article.comments.reverse %>
