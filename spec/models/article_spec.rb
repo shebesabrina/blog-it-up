@@ -6,7 +6,7 @@ describe Article, type: :model do
     it {should validate_presence_of(:body)}
   end
 
-  describe "relationshps" do
+  describe "relationships" do
     it {should have_many(:comments)}
   end
 end
