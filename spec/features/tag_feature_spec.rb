@@ -11,4 +11,18 @@ describe 'instance method' do
       expect(page).to have_content('ruby technology')
     end
   end
+
+  describe "user sees a single tag" do
+    it "displays tag by id" do
+      article = Article.create!(title: "New Title", body: "New Body")
+      tag = Tag.create!(name: "Name")
+      tagging = Tagging.create!(article_id: article.id, tag_id: tag.id)
+
+      visit article_path(article)
+
+      click_link tag.name
+
+      expect(page).to have_content(article.title)
+    end
+  end
 end
