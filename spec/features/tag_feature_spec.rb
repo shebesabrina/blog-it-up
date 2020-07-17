@@ -44,4 +44,21 @@ describe 'instance method' do
       end
     end
   end
+
+  describe "user deletes an tag" do
+    it "displays all tags without the deleted entry" do
+      article_1 = Article.create!(title: "Title 1", body: "Body 1")
+      tag_1 = article_1.tags.create!(name: "Name 1")
+      article_2 = Article.create!(title: "Title 2", body: "Body 2")
+      tag_2 = article_2.tags.create!(name: "Name 2")
+
+      visit tag_path(tag_1)
+      click_link "Delete"
+
+      expect(current_path).to eq(tags_path)
+      expect(page).to have_content(tag_2.name)
+      expect(all(".tag-name").count).to eq(1)
+      expect(page).to have_content("#{tag_1.name} was destroyed.")
+    end
+  end
 end
