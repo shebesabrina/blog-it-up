@@ -4,7 +4,7 @@
   <% @tags.each do |tag| %>
     <li>
       <%= link_to tag.name, tag_path(tag),
-    class: 'tag-title', id: "tag-#{tag.id}" %>
+    class: 'tag-name', id: "tag-#{tag.id}" %>
     </li>
   <% end %>
 </ul>

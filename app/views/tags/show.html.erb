@@ -1,4 +1,4 @@
-<h1>Articles Tagged with</h1>
+<h1><%= @tag.name %></h1>
 
 <ul>
   <% @tag.articles.each do |article| %>
@@ -7,3 +7,5 @@
     </li>
     <% end %>
 </ul>
+<p><%= @tag.name %></p>
+<%= link_to "Delete", tag_path(@tag), method: :delete %><br />
