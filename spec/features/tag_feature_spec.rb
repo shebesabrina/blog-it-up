@@ -25,4 +25,23 @@ describe 'instance method' do
       expect(page).to have_content(article.title)
     end
   end
+
+  describe "user sees all tags" do
+    describe "they visit /tags" do
+      it "displays all tags" do
+        article_1 = Article.create!(title: "Title 1", body: "Body 1")
+        tag_1 = article_1.tags.create!(name: "Name 1")
+        article_2 = Article.create!(title: "Title 2", body: "Body 2")
+        tag_2 = article_2.tags.create!(name: "Name 2")
+        article_3 = Article.create!(title: "Title 3", body: "Body 3")
+        tag_3 = article_3.tags.create!(name: "Name 3")
+
+        visit tags_path
+
+        expect(page).to have_content(tag_1.name)
+        expect(page).to have_content(tag_2.name)
+        expect(page).to have_content(tag_3.name)
+      end
+    end
+  end
 end
