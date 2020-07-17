@@ -94,6 +94,7 @@ describe "user sees all articles" do
         article.tags.create!(name: 'furniture')
         article.tags.create!(name: 'options')
 
+
         expect(article.tag_list).to eq("furniture, options")
       end
     end

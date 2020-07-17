@@ -7,4 +7,9 @@ class Article < ApplicationRecord
     def tag_list
       tags.join(", ")
     end
+
+    def tag_list=(tags_string)
+      tags_string.gsub(',','').split()
+      # tag_names = tags_string.split(",").collect{|s| s.strip.downcase}.uniq
+    end
 end
