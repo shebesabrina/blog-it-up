@@ -44,6 +44,7 @@ describe "user sees all articles" do
 
       fill_in "article[title]", with: "New Title!"
       fill_in "article[body]", with: "New Body!"
+      fill_in "article[tag_list]", with: "ruby, technology"
       click_on "Create Article"
 
       expect(page).to have_content("New Title!")
@@ -83,6 +84,18 @@ describe "user sees all articles" do
       expect(page).to have_content("New Title!")
       expect(page).to have_content("New Body!")
       expect(page).to have_content("Article New Title! Updated!")
+    end
+  end
+
+  describe 'instance methods' do
+    describe '#tag_list' do
+      it 'turns associated tags into a string' do
+        article = Article.create!(title: "Tall Tables", body: "They are tough for short legs")
+        article.tags.create!(name: 'furniture')
+        article.tags.create!(name: 'options')
+
+        expect(article.tag_list).to eq("furniture, options")
+      end
     end
   end
 end
