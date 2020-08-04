@@ -14,3 +14,10 @@
 
 <h3>Comments (<%= @article.comments.size %>)</h3>
 <%= render partial: 'articles/comment', collection: @article.comments.reverse %>
+
+<% if logged_in? %>
+  <%= "Logged in as #{current_user.email}" %>
+  <%= link_to "(logout)", logout_path %>
+<% else %>
+  <%= link_to "(login)", login_path %>
+<% end %>
